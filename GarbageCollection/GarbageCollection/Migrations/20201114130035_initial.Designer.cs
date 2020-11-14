@@ -4,14 +4,16 @@ using GarbageCollection.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GarbageCollection.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201114130035_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e89ddb55-9bee-4371-af3e-8392fb6edb57",
-                            ConcurrencyStamp = "c6014ddc-9829-4054-a344-6fe6a0b29a0b",
+                            Id = "24ce41fd-4b1b-4c42-91ce-60396e711468",
+                            ConcurrencyStamp = "8441d899-0d29-41d2-9904-48a3b4ac44b3",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
