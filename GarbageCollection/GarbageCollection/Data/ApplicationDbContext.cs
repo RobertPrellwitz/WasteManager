@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using GarbageCollection.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,10 @@ namespace GarbageCollection.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        
+        public DbSet<Customer> customer { get; set; }
+        public DbSet<Employee> employee { get; set; }
+        public DbSet<Address> Address { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

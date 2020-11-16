@@ -4,14 +4,16 @@ using GarbageCollection.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GarbageCollection.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201116184252_InitialII")]
+    partial class InitialII
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,9 +64,6 @@ namespace GarbageCollection.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PickupDay")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -126,8 +125,8 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "78639cf0-27f7-4fe0-8f10-20a03222de8b",
-                            ConcurrencyStamp = "a554277a-8eb2-4496-a73d-8ae4806cf553",
+                            Id = "afddf17e-0811-4414-8c38-e649205266be",
+                            ConcurrencyStamp = "cac15f6c-2df3-4362-8db3-de3152bd1eef",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
