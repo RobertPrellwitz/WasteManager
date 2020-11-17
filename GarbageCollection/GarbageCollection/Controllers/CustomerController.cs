@@ -24,7 +24,10 @@ namespace GarbageCollection.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
-
+            if (customer == null)
+            {
+                return new RedirectToActionResult("Create", "Customer", null);  
+            }
           // may need to create new customer
             return View(customer);
         }
@@ -46,22 +49,25 @@ namespace GarbageCollection.Controllers
         // GET: CustomerController/Create
         public ActionResult Create()
         {
+            Customer NewCustomer = new Customer();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            NewCustomer.IdentityUserId = userId;
             return View();
         }
 
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer newCustomer)
+        public ActionResult Create(Customer NewCustomer)
         {
-
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
+            NewCustomer.IdentityUserId = userId;
+
             try
             {
-                dbContext.Customers.Add(newCustomer);
+                dbContext.Customers.Add(NewCustomer);
                 dbContext.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details));
             }
             catch
             {

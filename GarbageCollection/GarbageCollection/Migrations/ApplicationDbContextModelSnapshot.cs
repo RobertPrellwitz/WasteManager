@@ -19,7 +19,7 @@ namespace GarbageCollection.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GarbageCollection.Models.Address", b =>
+            modelBuilder.Entity("GarbageCollection.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -28,32 +28,6 @@ namespace GarbageCollection.Migrations
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zip")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdentityUserId");
-
-                    b.ToTable("Address");
-                });
-
-            modelBuilder.Entity("GarbageCollection.Models.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -65,6 +39,15 @@ namespace GarbageCollection.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PickupDay")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zip")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -126,24 +109,24 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0227fca1-f094-4e13-bd78-4fb8e164c98a",
-                            ConcurrencyStamp = "86232857-5101-401b-957d-f225508dcea7",
+                            Id = "7e795942-34b5-428a-95c4-5d42a842dd16",
+                            ConcurrencyStamp = "60a64933-6c9b-41d6-89eb-4f6d6fc6b8ed",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "15cd58e6-38c6-478c-b231-d2e6383b5238",
-                            ConcurrencyStamp = "de7405f7-35c9-42c6-b81c-1f31e349712b",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
+                            Id = "156f1061-af7d-4ddc-8774-ae6588ba33e3",
+                            ConcurrencyStamp = "95223e62-8edf-4789-bb2e-10c114e3243a",
+                            Name = "Customers",
+                            NormalizedName = "CUSTOMERS"
                         },
                         new
                         {
-                            Id = "74b9628a-9d71-462d-94ef-0ff469e115b5",
-                            ConcurrencyStamp = "761bfe14-9c0e-48d9-9025-1943ca463169",
-                            Name = "Employee",
-                            NormalizedName = "Employee"
+                            Id = "93a38094-01e8-456f-8c58-ff7393b8866c",
+                            ConcurrencyStamp = "a67042ff-5483-477c-ac66-78acfa5be0b0",
+                            Name = "Employees",
+                            NormalizedName = "EMPLOYEES"
                         });
                 });
 
@@ -314,13 +297,6 @@ namespace GarbageCollection.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GarbageCollection.Models.Address", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "identityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("GarbageCollection.Models.Customer", b =>
