@@ -19,6 +19,11 @@ namespace GarbageCollection.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string PickupDay { get; set; }
+        public DateTime? SpecialPickup { get; set; }
+        public DateTime? StartSuspend { get; set; }
+        public DateTime? EndSuspend { get; set; } 
+
+        //public selectlist
 
 
         [ForeignKey("IdentityUser")]

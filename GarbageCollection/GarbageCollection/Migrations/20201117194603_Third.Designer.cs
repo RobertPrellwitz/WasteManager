@@ -4,14 +4,16 @@ using GarbageCollection.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GarbageCollection.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201117194603_Third")]
+    partial class Third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace GarbageCollection.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("EndSuspend")
+                    b.Property<DateTime>("EndSuspend")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -44,10 +46,10 @@ namespace GarbageCollection.Migrations
                     b.Property<string>("PickupDay")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("SpecialPickup")
+                    b.Property<DateTime>("SpecialPickup")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("StartSuspend")
+                    b.Property<DateTime>("StartSuspend")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("State")
@@ -118,15 +120,15 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3d5da7d1-6bbd-4eb8-954b-992d498ec258",
-                            ConcurrencyStamp = "4b4ac58f-b99f-49e6-bcde-d691c528e456",
+                            Id = "840c8640-26dd-4a51-8ac6-2b3cc44eb2e0",
+                            ConcurrencyStamp = "976f384a-57de-4a47-9b83-bf8de8bd1b45",
                             Name = "Customers",
                             NormalizedName = "CUSTOMERS"
                         },
                         new
                         {
-                            Id = "5309d031-904d-4ca0-9886-186234c8e600",
-                            ConcurrencyStamp = "d7456dbd-668d-40e9-a2b6-a673f5200a25",
+                            Id = "a5c6a5e6-c06a-433a-9ebc-eca00501ba2e",
+                            ConcurrencyStamp = "2b6064b9-13de-4463-8ce4-656aa7c9dd65",
                             Name = "Employees",
                             NormalizedName = "EMPLOYEES"
                         });
