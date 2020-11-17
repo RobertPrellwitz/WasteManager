@@ -23,7 +23,7 @@ namespace GarbageCollection.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
+           // builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Customers", NormalizedName = "CUSTOMERS" });
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Employees", NormalizedName = "EMPLOYEES" });
         }

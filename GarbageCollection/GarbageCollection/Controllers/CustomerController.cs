@@ -42,6 +42,8 @@ namespace GarbageCollection.Controllers
         {
             
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+           
+
             var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
             return View(customer);
         }
@@ -51,6 +53,17 @@ namespace GarbageCollection.Controllers
         {
             Customer NewCustomer = new Customer();
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //if (userId == null)
+            //{
+            //    //return new 
+            //    // return new RedirectResult(https://localhost:44399/Identity/Account/Register)
+            //    //return new RedirectToPageResult("localhost:44399/Identity/Account/Register")
+
+            //    return new RedirectToPageResult("/Areas/Identity/Pages/Account",new { area = "Register" } );
+             //return new RedirectToPageResult("/Identity/Pages/Account/Register");
+
+            //    //return new RedirectToActionResult("Register","/Identity/Account",null);
+            //}
             NewCustomer.IdentityUserId = userId;
             return View();
         }
@@ -76,19 +89,25 @@ namespace GarbageCollection.Controllers
         }
 
         // GET: CustomerController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
+            return View(customer);
         }
 
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Customer currentCustomer) //(int id, Customer currentCustomer)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            currentCustomer.IdentityUserId = userId;
             try
             {
-                return RedirectToAction(nameof(Index));
+                dbContext.Customers.Update(currentCustomer);
+                dbContext.SaveChanges();
+                return RedirectToAction(nameof(Details));
             }
             catch
             {
