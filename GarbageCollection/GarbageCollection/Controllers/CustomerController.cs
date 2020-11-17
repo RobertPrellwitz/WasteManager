@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GarbageCollection.Controllers
@@ -18,16 +19,28 @@ namespace GarbageCollection.Controllers
         {
             dbContext = context;
         }
+
+        public ActionResult Customer()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
+
+          // may need to create new customer
+            return View(customer);
+        }
         public ActionResult Index()
         {
-            var customers = dbContext.customer.Select(s => s);
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return View(userId);
         }
 
         // GET: CustomerController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
+            return View(customer);
         }
 
         // GET: CustomerController/Create
@@ -39,11 +52,14 @@ namespace GarbageCollection.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(Customer newCustomer)
         {
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
             try
             {
-                dbContext.customer.Add(customer);
+                dbContext.Customers.Add(newCustomer);
                 dbContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }

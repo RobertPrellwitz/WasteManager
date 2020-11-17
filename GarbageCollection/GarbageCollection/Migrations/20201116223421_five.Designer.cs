@@ -4,14 +4,16 @@ using GarbageCollection.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GarbageCollection.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201116223421_five")]
+    partial class five
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,7 +73,7 @@ namespace GarbageCollection.Migrations
 
                     b.HasIndex("IdentityUserId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("customer");
                 });
 
             modelBuilder.Entity("GarbageCollection.Models.Employee", b =>
@@ -94,7 +96,7 @@ namespace GarbageCollection.Migrations
 
                     b.HasIndex("IdentityUserId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -126,22 +128,22 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0227fca1-f094-4e13-bd78-4fb8e164c98a",
-                            ConcurrencyStamp = "86232857-5101-401b-957d-f225508dcea7",
+                            Id = "6878d0ce-ac0b-4003-8e60-bf4673cfe069",
+                            ConcurrencyStamp = "a8d9cd83-f386-4171-b9f1-9f309d7bff77",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "15cd58e6-38c6-478c-b231-d2e6383b5238",
-                            ConcurrencyStamp = "de7405f7-35c9-42c6-b81c-1f31e349712b",
+                            Id = "e0afa1a7-9607-46e4-a291-6c286059dc7d",
+                            ConcurrencyStamp = "fefd9cad-7d69-46a3-bcb5-933a726eb4c5",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "74b9628a-9d71-462d-94ef-0ff469e115b5",
-                            ConcurrencyStamp = "761bfe14-9c0e-48d9-9025-1943ca463169",
+                            Id = "0cd2197a-cae4-46b3-8b99-453972b1427b",
+                            ConcurrencyStamp = "b503149f-df42-4b35-809e-fe1b5529201f",
                             Name = "Employee",
                             NormalizedName = "Employee"
                         });
