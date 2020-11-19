@@ -7,9 +7,9 @@
 
 <h1>DailyPickup</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -35,10 +35,13 @@
                 @Html.DisplayNameFor(model => model.SpecialPickup)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.LastPickUp)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.identityUser)
             </th>
 
-         </tr>
+        </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
@@ -65,17 +68,20 @@
                 @Html.DisplayFor(modelItem => item.SpecialPickup)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.LastPickUp)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.IdentityUserId)
             </td>
             <td>
                 <a asp-action="LogPickup" asp-route-id="@item.IdentityUserId">Collection completed</a>
             </td>
 
-            <td>
-                <div class="form-group">
-                    <input type="submit" value="Collected" class="btn btn-primary" />
-                </div>
-            </td>
+            @*<td>
+            <div class="form-group">
+                <input type="submit" value="Collected" class="btn btn-primary" />
+            </div>
+        </td>*@
 
             @*<td>
             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

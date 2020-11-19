@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GarbageCollection.Migrations
 {
-    public partial class Init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -165,6 +165,10 @@ namespace GarbageCollection.Migrations
                     State = table.Column<string>(nullable: true),
                     Zip = table.Column<string>(nullable: true),
                     PickupDay = table.Column<string>(nullable: true),
+                    SpecialPickup = table.Column<DateTime>(nullable: true),
+                    StartSuspend = table.Column<DateTime>(nullable: true),
+                    EndSuspend = table.Column<DateTime>(nullable: true),
+                    LastPickUp = table.Column<DateTime>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -186,6 +190,7 @@ namespace GarbageCollection.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    Zip = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -199,20 +204,38 @@ namespace GarbageCollection.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "7e795942-34b5-428a-95c4-5d42a842dd16", "60a64933-6c9b-41d6-89eb-4f6d6fc6b8ed", "Admin", "ADMIN" });
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Paid = table.Column<bool>(nullable: false),
+                    special = table.Column<bool>(nullable: false),
+                    charge = table.Column<double>(nullable: false),
+                    IdentityUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "156f1061-af7d-4ddc-8774-ae6588ba33e3", "95223e62-8edf-4789-bb2e-10c114e3243a", "Customers", "CUSTOMERS" });
+                values: new object[] { "14bd2086-0fb3-4612-824c-1c81502737bc", "b1bdd9ca-352c-4bb6-84e8-a43f432c51fb", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "93a38094-01e8-456f-8c58-ff7393b8866c", "a67042ff-5483-477c-ac66-78acfa5be0b0", "Employees", "EMPLOYEES" });
+                values: new object[] { "87a48320-2ecd-4e32-b722-b0b1410fdd22", "58213ca1-7752-439d-b480-c98ac2a24f2f", "Employee", "EMPLOYEE" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -262,6 +285,11 @@ namespace GarbageCollection.Migrations
                 name: "IX_Employees_IdentityUserId",
                 table: "Employees",
                 column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_IdentityUserId",
+                table: "Transactions",
+                column: "IdentityUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -286,6 +314,9 @@ namespace GarbageCollection.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

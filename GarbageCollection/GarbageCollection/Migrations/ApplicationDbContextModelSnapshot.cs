@@ -70,6 +70,9 @@ namespace GarbageCollection.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("LastPickUp")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PickupDay")
                         .HasColumnType("nvarchar(max)");
 
@@ -150,15 +153,15 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1d9fdfaf-8a06-4cbe-a9a3-37fb1fdeab95",
-                            ConcurrencyStamp = "8ca03c27-b9da-45b0-9f4e-93c86c0b7109",
+                            Id = "14bd2086-0fb3-4612-824c-1c81502737bc",
+                            ConcurrencyStamp = "b1bdd9ca-352c-4bb6-84e8-a43f432c51fb",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "dcd8f414-0ac6-45c6-a78c-b59defc09821",
-                            ConcurrencyStamp = "0bbfef32-e8da-4707-a4e8-61405d3df952",
+                            Id = "87a48320-2ecd-4e32-b722-b0b1410fdd22",
+                            ConcurrencyStamp = "58213ca1-7752-439d-b480-c98ac2a24f2f",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });

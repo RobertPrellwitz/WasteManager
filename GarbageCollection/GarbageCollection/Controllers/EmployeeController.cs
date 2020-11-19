@@ -81,16 +81,23 @@ namespace GarbageCollection.Controllers
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = dbContext.Employees.Where(employee => employee.IdentityUserId == userId).SingleOrDefault();
+            return View(employee);
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Employee currentEmployee)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            currentEmployee.IdentityUserId = userId;
             try
             {
+                dbContext.Employees.Update(currentEmployee);
+                dbContext.SaveChanges();
+                //return RedirectToAction(nameof(Details));
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -122,17 +129,20 @@ namespace GarbageCollection.Controllers
 
         public ActionResult DailyPickup(string zip)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = dbContext.Employees.Where(employee => employee.IdentityUserId == userId).SingleOrDefault();
+            zip = employee.Zip;
             DateTime thisDay = DateTime.Today;
-            string specDay = thisDay.ToString("d");
             string day = thisDay.ToString("dddd");
-            var todaysPickUps = dbContext.Customers.Where(s => s.PickupDay == day || s.SpecialPickup.Value.Date==thisDay.Date);
+            var todaysPickUps = dbContext.Customers.Where(s => s.PickupDay == day && s.LastPickUp.Value.Date != thisDay.Date && s.Zip == zip 
+            || s.SpecialPickup.Value.Date==thisDay.Date && s.LastPickUp.Value.Date != thisDay.Date && s.Zip == zip);
 
             return View(todaysPickUps);
         }
 
         public ActionResult CustomerList()
         {
-            var customerSites = dbContext.Customers.Where(s => s.Zip == "53092");
+            var customerSites = dbContext.Customers;//.Where(s => s.Zip == "53092");
             return View(customerSites);
         }
 
@@ -141,10 +151,12 @@ namespace GarbageCollection.Controllers
         //chagrge to db
         public ActionResult LogPickup(string id)
             {
-          
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
             var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == id).SingleOrDefault();
             double charge = 25;
+            customer.LastPickUp = DateTime.Today;
+            dbContext.Customers.Update(customer);
+            dbContext.SaveChanges();
             CollectionData data = new CollectionData();
             if (customer.SpecialPickup > Today ) 
             {

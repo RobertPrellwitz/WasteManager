@@ -22,6 +22,7 @@ namespace GarbageCollection.Models
         public DateTime? SpecialPickup { get; set; }
         public DateTime? StartSuspend { get; set; }
         public DateTime? EndSuspend { get; set; } 
+        public DateTime? LastPickUp { get; set; }
 
         //public selectlist
 

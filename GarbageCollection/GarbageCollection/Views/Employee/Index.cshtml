@@ -70,7 +70,7 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-controller="Employee" asp-action="CustomerList">CustomerList</a> |
-                <a asp-controller="Employee" asp-action="DailyPickup">Todays Pickups</a>
+                <a asp-controller="Employee" asp-route-id="Zip Code" asp-action="DailyPickup">Todays Pickups</a>
             </td>
         </tr>
 }

@@ -7,9 +7,9 @@
 
 <h1>CustomerList</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -43,9 +43,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndSuspend)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.identityUser)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -82,14 +82,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EndSuspend)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.identityUser.Id)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            </td>*@
         </tr>
 }
     </tbody>
