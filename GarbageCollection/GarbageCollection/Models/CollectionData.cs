@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace GarbageCollection.Models
 {
-    public class Employee
+    public class CollectionData
     {
         [Key]
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Zip { get; set; }
-
+        public DateTime Date{ get; set; }
+        public bool Paid { get;set;}
+        public bool special { get; set; }
+        public double charge { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

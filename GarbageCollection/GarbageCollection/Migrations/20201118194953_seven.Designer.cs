@@ -4,14 +4,16 @@ using GarbageCollection.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GarbageCollection.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201118194953_seven")]
+    partial class seven
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace GarbageCollection.Migrations
 
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("Paid")
-                        .HasColumnType("bit");
 
                     b.Property<double>("charge")
                         .HasColumnType("float");
@@ -150,15 +149,15 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1d9fdfaf-8a06-4cbe-a9a3-37fb1fdeab95",
-                            ConcurrencyStamp = "8ca03c27-b9da-45b0-9f4e-93c86c0b7109",
+                            Id = "5545d5c0-53e6-4011-bd6f-acf078f6b74a",
+                            ConcurrencyStamp = "d7a2efc1-a7b5-4316-ab8c-3e945232a2de",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "dcd8f414-0ac6-45c6-a78c-b59defc09821",
-                            ConcurrencyStamp = "0bbfef32-e8da-4707-a4e8-61405d3df952",
+                            Id = "39218bf8-03f5-437d-9d77-d3a61c67777a",
+                            ConcurrencyStamp = "28feb28e-0806-423e-9dbc-dc8bb53229c8",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });

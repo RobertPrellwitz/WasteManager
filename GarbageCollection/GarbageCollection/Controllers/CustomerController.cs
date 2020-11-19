@@ -1,5 +1,6 @@
 ﻿using GarbageCollection.Data;
 using GarbageCollection.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace GarbageCollection.Controllers
 {
+    [Authorize(Roles = "Customer")]
     public class CustomerController : Controller
     {
         // GET: CustomerController
@@ -33,8 +35,9 @@ namespace GarbageCollection.Controllers
         }
         public ActionResult Index()
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return View(userId);
+            var customerList = dbContext.Customers.Select(c => c);
+
+            return View(customerList);
         }
 
         // GET: CustomerController/Details/5
@@ -134,6 +137,15 @@ namespace GarbageCollection.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Bill(int id,Customer currentCustomer)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            currentCustomer.IdentityUserId = userId;
+            // need to add sum function
+            var currentBill = dbContext.Transactions.Where(t => t.IdentityUserId == userId);
+            return View();
         }
     }
 }

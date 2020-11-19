@@ -1,0 +1,92 @@
+﻿@model IEnumerable<GarbageCollection.Models.Customer>
+
+@{
+    ViewData["Title"] = "DailyPickup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>DailyPickup</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PickupDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialPickup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.identityUser)
+            </th>
+
+         </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialPickup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityUserId)
+            </td>
+            <td>
+                <a asp-action="LogPickup" asp-route-id="@item.IdentityUserId">Collection completed</a>
+            </td>
+
+            @*<td>
+            <a asp-action="create" asp-
+        </td>*@
+
+            <td>
+                <div class="form-group">
+                    <input type="submit" value="Collected" class="btn btn-primary" />
+                </div>
+            </td>
+
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+        </tr>
+}
+    </tbody>
+</table>

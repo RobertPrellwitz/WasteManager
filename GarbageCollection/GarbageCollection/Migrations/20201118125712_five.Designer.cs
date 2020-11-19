@@ -4,49 +4,22 @@ using GarbageCollection.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GarbageCollection.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201118125712_five")]
+    partial class five
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("GarbageCollection.Models.CollectionData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("Paid")
-                        .HasColumnType("bit");
-
-                    b.Property<double>("charge")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("special")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdentityUserId");
-
-                    b.ToTable("Transactions");
-                });
 
             modelBuilder.Entity("GarbageCollection.Models.Customer", b =>
                 {
@@ -111,9 +84,6 @@ namespace GarbageCollection.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Zip")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IdentityUserId");
@@ -150,15 +120,15 @@ namespace GarbageCollection.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1d9fdfaf-8a06-4cbe-a9a3-37fb1fdeab95",
-                            ConcurrencyStamp = "8ca03c27-b9da-45b0-9f4e-93c86c0b7109",
+                            Id = "4edd0756-7413-4438-93c7-18ef138945f8",
+                            ConcurrencyStamp = "aa32adb5-226a-450e-bea7-635bf3709d23",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "dcd8f414-0ac6-45c6-a78c-b59defc09821",
-                            ConcurrencyStamp = "0bbfef32-e8da-4707-a4e8-61405d3df952",
+                            Id = "c79e18a5-3843-4c77-b1a9-e23dfbf9829c",
+                            ConcurrencyStamp = "04441cb4-41b2-4378-8b29-89e01b7875f7",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -331,13 +301,6 @@ namespace GarbageCollection.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GarbageCollection.Models.CollectionData", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "identityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("GarbageCollection.Models.Customer", b =>

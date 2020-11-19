@@ -12,6 +12,7 @@ namespace GarbageCollection.Data
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<CollectionData> Transactions { get; set; }
         
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -24,8 +25,8 @@ namespace GarbageCollection.Data
             base.OnModelCreating(builder);
 
            // builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Customers", NormalizedName = "CUSTOMERS" });
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Employees", NormalizedName = "EMPLOYEES" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Customer", NormalizedName = "CUSTOMER" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE" });
         }
     }
 }

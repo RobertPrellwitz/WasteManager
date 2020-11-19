@@ -1,0 +1,78 @@
+﻿@model IEnumerable<GarbageCollection.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.identityUser)
+            </th>
+            <th>
+                <label for="Pickup Day">Service Day</label>
+
+            </th>
+            <th>
+                <label for=" Service Zip">Service Zip</label>
+            </th>
+            @*<th>
+                <label for=" Service Zip">Service Zip</label>
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.identityUser.Id)
+            </td>*@
+            <td>
+
+                @*<select name="Pickup Day" id="Pickup Day">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+            </select>*@
+            </td>
+            <td>
+                <input type="text" id="Service Day" name="Service Day" /><br />
+            </td>
+            <td>
+                <input type="text" id="Zip Code" name="Zip Code" /><br />
+            </td>
+            <td>
+                <div class="form-group">
+                    <input type="submit" value="DailyPickup" class="btn btn-primary" />
+                </div>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Employee" asp-action="CustomerList">CustomerList</a> |
+                <a asp-controller="Employee" asp-action="DailyPickup">Todays Pickups</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
