@@ -145,7 +145,7 @@ namespace GarbageCollection.Controllers
             currentCustomer.IdentityUserId = userId;
             // need to add sum function
             var currentBill = dbContext.Transactions.Where(t => t.IdentityUserId == userId);
-            return View();
+            return View(currentBill);
         }
     }
 }
