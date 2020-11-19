@@ -45,8 +45,6 @@ namespace GarbageCollection.Controllers
         {
             
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-           
-
             var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
             return View(customer);
         }
@@ -102,7 +100,7 @@ namespace GarbageCollection.Controllers
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Customer currentCustomer) //(int id, Customer currentCustomer)
+        public ActionResult Edit(int id, Customer currentCustomer) 
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             currentCustomer.IdentityUserId = userId;

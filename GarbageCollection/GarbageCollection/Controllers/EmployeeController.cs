@@ -141,12 +141,15 @@ namespace GarbageCollection.Controllers
         //chagrge to db
         public ActionResult LogPickup(string id)
             {
-
+          
             //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
+            var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == id).SingleOrDefault();
             double charge = 25;
             CollectionData data = new CollectionData();
-
+            if (customer.SpecialPickup > Today ) 
+            {
+                charge = charge * 2;
+            }
             data.IdentityUserId = id;
             data.Date = DateTime.Today;
             data.charge = charge;
