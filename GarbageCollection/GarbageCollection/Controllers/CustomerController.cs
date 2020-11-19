@@ -15,6 +15,8 @@ namespace GarbageCollection.Controllers
     public class CustomerController : Controller
     {
         // GET: CustomerController
+        public DayOfWeek DayOfWeek { get; set; }
+
         private ApplicationDbContext dbContext;
 
         public CustomerController(ApplicationDbContext context)
@@ -115,6 +117,31 @@ namespace GarbageCollection.Controllers
                 return View();
             }
         }
+        public ActionResult EditChangeSvcDt()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
+            return View(customer);
+        }
+
+        // POST: CustomerController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditChangeSvcDt(int id, Customer currentCustomer)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            currentCustomer.IdentityUserId = userId;
+            try
+            {
+                dbContext.Customers.Update(currentCustomer);
+                dbContext.SaveChanges();
+                return RedirectToAction(nameof(Details));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: CustomerController/Delete/5
         public ActionResult Delete(int id)
@@ -144,6 +171,34 @@ namespace GarbageCollection.Controllers
             // need to add sum function
             var currentBill = dbContext.Transactions.Where(t => t.IdentityUserId == userId);
             return View(currentBill);
+        }
+
+       
+        
+        public ActionResult EditSuspendSvc()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == userId).SingleOrDefault();
+            return View(customer);
+        }
+
+        // POST: CustomerController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditChangeSvc(int id, Customer currentCustomer)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            currentCustomer.IdentityUserId = userId;
+            try
+            {
+                dbContext.Customers.Update(currentCustomer);
+                dbContext.SaveChanges();
+                return RedirectToAction(nameof(Details));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

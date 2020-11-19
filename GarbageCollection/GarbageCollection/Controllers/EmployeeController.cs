@@ -21,7 +21,7 @@ namespace GarbageCollection.Controllers
         
         public static DateTime Today { get; }
 
-        public DayOfWeek WeekDay { get; }
+        public DayOfWeek WeekDay { get; set; }
         
 
 
@@ -140,12 +140,28 @@ namespace GarbageCollection.Controllers
             return View(todaysPickUps);
         }
 
-        public ActionResult CustomerList()
+        public ActionResult AllPickups()
         {
-            var customerSites = dbContext.Customers;//.Where(s => s.Zip == "53092");
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = dbContext.Employees.Where(employee => employee.IdentityUserId == userId).SingleOrDefault();
+            string zip = employee.Zip;
+            var customerSites = dbContext.Customers.Where(s => s.Zip == zip);
             return View(customerSites);
         }
 
+
+        public ActionResult CustomerList(string day)
+        {
+            var customerSites = dbContext.Customers;
+            return View(customerSites);
+        }
+
+
+        public ActionResult FilteredCustomerList(string day)
+        {
+            var  customerSites = dbContext.Customers.Where(s => s.PickupDay == day);
+            return View(customerSites);
+        }
         // need customer id
         // chck for special pickup
         //chagrge to db

@@ -8,7 +8,11 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New</a> |
+    @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+    <a asp-controller="Employee" asp-action="CustomerList">CustomerList</a> |
+    <a asp-controller="Employee" asp-route-id="Zip Code" asp-action="DailyPickup">Todays Pickups</a> |
+    <a asp-controller="Employee" asp-route-id="Zip Code" asp-action="AllPickups">All  Pickups</a>
 </p>
 <table class="table">
     <thead>
@@ -22,13 +26,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.identityUser)
             </th>
-            <th>
+            @*<th>
                 <label for="Pickup Day">Service Day</label>
 
             </th>
             <th>
                 <label for=" Service Zip">Service Zip</label>
-            </th>
+            </th>*@
             @*<th>
                 <label for=" Service Zip">Service Zip</label>
             </th>*@
@@ -55,7 +59,7 @@
                 <option value="Thursday">Thursday</option>
                 <option value="Friday">Friday</option>
             </select>*@
-            </td>
+            @*</td>
             <td>
                 <input type="text" id="Service Day" name="Service Day" /><br />
             </td>
@@ -66,7 +70,7 @@
                 <div class="form-group">
                     <input type="submit" value="DailyPickup" class="btn btn-primary" />
                 </div>
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-controller="Employee" asp-action="CustomerList">CustomerList</a> |
