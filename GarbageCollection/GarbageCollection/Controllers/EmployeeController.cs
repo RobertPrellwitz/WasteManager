@@ -134,8 +134,10 @@ namespace GarbageCollection.Controllers
             zip = employee.Zip;
             DateTime thisDay = DateTime.Today;
             string day = thisDay.ToString("dddd");
-            var todaysPickUps = dbContext.Customers.Where(s => s.PickupDay == day && s.LastPickUp.Value.Date != thisDay.Date && s.Zip == zip 
+            //&& !(thisDay.Date >= s.StartSuspend.Value.Date && thisDay.Date <= s.EndSuspend.Value.Date)
+            var todaysPickUps = dbContext.Customers.Where(s => s.PickupDay == day && s.LastPickUp.Value.Date != thisDay.Date && s.Zip == zip && (s.StartSuspend.Value.Date== null || !(thisDay.Date >= s.StartSuspend.Value.Date) && !(thisDay.Date <= s.EndSuspend.Value.Date))
             || s.SpecialPickup.Value.Date==thisDay.Date && s.LastPickUp.Value.Date != thisDay.Date && s.Zip == zip);
+
 
             return View(todaysPickUps);
         }
