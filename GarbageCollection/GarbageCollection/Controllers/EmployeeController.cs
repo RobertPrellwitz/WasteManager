@@ -149,22 +149,20 @@ namespace GarbageCollection.Controllers
             return View(customerSites);
         }
 
-
         public ActionResult CustomerList(string day)
         {
             var customerSites = dbContext.Customers;
             return View(customerSites);
         }
 
-
-        public ActionResult FilteredCustomerList(string day)
-        {
-            var  customerSites = dbContext.Customers.Where(s => s.PickupDay == day);
-            return View(customerSites);
+        public ActionResult FilteredCustomerList(string day) 
+        { 
+           
+             day = Request.Form["PickupDay"].ToString();
+             var customerSites = dbContext.Customers.Where(s => s.PickupDay == day);
+             return View(customerSites);
         }
-        // need customer id
-        // chck for special pickup
-        //chagrge to db
+       
         public ActionResult LogPickup(string id)
             {
             
