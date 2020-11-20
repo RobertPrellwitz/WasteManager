@@ -8,10 +8,14 @@
 
 <h1>CustomerList</h1>
 
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
-<form asp-action="FilteredCustomerList"> Pickup Day>
+<p>
+    <a asp-controller="Employee" asp-action="CustomerList">CustomerList</a> |
+    <a asp-controller="Employee" asp-route-id="Zip Code" asp-action="DailyPickup">Todays Pickups</a> |
+    <a asp-controller="Employee" asp-route-id="Zip Code" asp-action="AllPickups">All  Pickups</a>
+</p>
+<br />
+<br />
+<form asp-action="FilteredCustomerList"> Select Pickup Day
     <select name="PickupDay">
         <option value="Monday">Monday</option>
         <option value="Tuesday">Tuesday</option>

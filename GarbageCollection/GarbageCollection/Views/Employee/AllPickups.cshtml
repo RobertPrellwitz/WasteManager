@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DailyPickup</h1>
+<h1>Employee's Weekly Pickups</h1>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+<p>
+    <a asp-controller="Employee" asp-action="CustomerList">CustomerList</a> |
+    <a asp-controller="Employee" asp-route-id="Zip Code" asp-action="DailyPickup">Todays Pickups</a> |
+    <a asp-controller="Employee" asp-route-id="Zip Code" asp-action="AllPickups">All  Pickups</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -38,8 +40,12 @@
                 @Html.DisplayNameFor(model => model.LastPickUp)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.identityUser)
+                @Html.DisplayNameFor(model => model.StartSuspend)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndSuspend)
+            </th>
+
 
         </tr>
     </thead>
@@ -71,23 +77,12 @@
                 @Html.DisplayFor(modelItem => item.LastPickUp)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdentityUserId)
+                @Html.DisplayFor(modelItem => item.StartSuspend)
             </td>
             <td>
-                <a asp-action="LogPickup" asp-route-id="@item.IdentityUserId">Collection completed</a>
+                @Html.DisplayFor(modelItem => item.EndSuspend)
             </td>
 
-            @*<td>
-            <div class="form-group">
-                <input type="submit" value="Collected" class="btn btn-primary" />
-            </div>
-        </td>*@
-
-            @*<td>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </td>*@
         </tr>
 }
     </tbody>
