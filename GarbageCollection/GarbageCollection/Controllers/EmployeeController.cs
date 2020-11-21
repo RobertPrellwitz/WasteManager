@@ -43,9 +43,10 @@ namespace GarbageCollection.Controllers
         }
 
         // GET: EmployeeController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == id).SingleOrDefault();
+            return View(customer);
         }
 
         // GET: EmployeeController/Create
@@ -176,7 +177,7 @@ namespace GarbageCollection.Controllers
             CollectionData data = new CollectionData();
             if (customer.SpecialPickup > Today ) 
             {
-                charge = charge * 2;
+                charge = charge * 4;
             }
             data.IdentityUserId = id;
             data.Date = DateTime.Today;

@@ -71,9 +71,16 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EndSuspend)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastPickUp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastPickUp)
+        </dd>
+       
     </dl>
 </div>
-<div>
+<@*div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Customer">Home</a>
-</div>
+   
+</div>*@
