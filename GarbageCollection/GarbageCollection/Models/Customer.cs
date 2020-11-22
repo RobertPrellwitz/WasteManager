@@ -23,6 +23,8 @@ namespace GarbageCollection.Models
         public DateTime? StartSuspend { get; set; }
         public DateTime? EndSuspend { get; set; } 
         public DateTime? LastPickUp { get; set; }
+        public string Lattitude { get; set; }
+        public string Longitude { get; set; }
 
         //public selectlist
 

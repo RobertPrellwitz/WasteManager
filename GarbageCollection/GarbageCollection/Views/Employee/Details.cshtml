@@ -10,73 +10,115 @@
 <div>
     <h4>Customer</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Zip)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Zip)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PickupDay)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PickupDay)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SpecialPickup)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SpecialPickup)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartSuspend)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartSuspend)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndSuspend)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndSuspend)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastPickUp)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastPickUp)
-        </dd>
-       
-    </dl>
+    <div class="row">
+        <div class=" col-lg-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.Street)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.Street)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.State)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.State)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.Zip)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.Zip)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.PickupDay)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.PickupDay)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.SpecialPickup)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.SpecialPickup.Value.Date)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.StartSuspend)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.StartSuspend.Value.Date)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.EndSuspend)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.EndSuspend.Value.Date)
+                </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.LastPickUp)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.LastPickUp.Value.Date)
+                </dd>
+
+            </dl>
+
+        </div>
+        <div class="col-lg-9">
+            <title>Add Map</title>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrZa-p1sVQEWYQhN2vRdCQwEpadzlcq2k&callback=initMap&libraries=&v=weekly"
+                    defer></script>
+            <style type="text/css">
+                /* Set the size of the div element that contains the map */
+                #map {
+                    height: 400px;
+                    /* The height is 400 pixels */
+                    width: 100%;
+                    /* The width is the width of the web page */
+                }
+            </style>
+            <script>
+                // Initialize and add the map
+                function initMap() {
+                    // The location of My House
+                    const home = { lat: 43.223823, lng: -87.965974 };
+                    // The map, centered at Uluru
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 14,
+                        center: home,
+                    });
+                    // The marker, positioned at My House
+                    const marker = new google.maps.Marker({
+                        position: home,
+                        map: map,
+                    });
+                }
+            </script>
+
+            <body>
+                <h3>Customer Location</h3>
+                <!--The div element for the map -->
+                <div id="map"></div>
+            </body>
+        </div>
+    </div>
 </div>
