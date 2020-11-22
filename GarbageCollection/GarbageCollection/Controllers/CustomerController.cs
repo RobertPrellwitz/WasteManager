@@ -3,12 +3,16 @@ using GarbageCollection.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace GarbageCollection.Controllers
 {
@@ -83,8 +87,11 @@ namespace GarbageCollection.Controllers
             try
             {
                 dbContext.Customers.Add(NewCustomer);
+                
                 dbContext.SaveChanges();
                 GetCoordinates(NewCustomer);
+                
+
                 return RedirectToAction(nameof(Details));
             }
             catch
@@ -202,27 +209,26 @@ namespace GarbageCollection.Controllers
                 return View();
             }
         }
-
-        public async void GetCoordinates(Customer currentCustomer)
+        public void GetCoordinates(Customer currentCustomer)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             currentCustomer.IdentityUserId = userId;
 
+
             string address = currentCustomer.Street + "+" + currentCustomer.City + "+" + currentCustomer.State + "+" + currentCustomer.Zip;
             string baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCrZa-p1sVQEWYQhN2vRdCQwEpadzlcq2k";
-            using (HttpClient client = new HttpClient())
-            using (HttpResponseMessage res = await client.GetAsync(baseUrl))
-            using (HttpContent content = res.Content)
-            {
-                string data = await content.ReadAsStringAsync();
-                if (data != null)
-                {
-                    Console.WriteLine(data);
-                }
 
-            }
-
-
+            var result = new System.Net.WebClient().DownloadString(baseUrl);
+            dynamic geo = JsonConvert.DeserializeObject(result);
+            string lat = geo.results[0].geometry.location.lat.ToString();
+            string lng = geo.results[0].geometry.location.lng.ToString();
+            currentCustomer.Lattitude = lat;
+            currentCustomer.Longitude = lng;
+            dbContext.Customers.Update(currentCustomer);
+            dbContext.SaveChanges();
         }
+
+
+
     }
 }

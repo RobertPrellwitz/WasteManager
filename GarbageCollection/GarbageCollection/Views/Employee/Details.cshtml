@@ -84,7 +84,7 @@
 
         </div>
         <div class="col-lg-9">
-            <title>Add Map</title>
+            @*<title>Add Map</title>*@
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrZa-p1sVQEWYQhN2vRdCQwEpadzlcq2k&callback=initMap&libraries=&v=weekly"
                     defer></script>
             <style type="text/css">
@@ -100,7 +100,7 @@
                 // Initialize and add the map
                 function initMap() {
                     // The location of My House
-                    const home = { lat: 43.223823, lng: -87.965974 };
+                    const home = { lat: @Html.DisplayFor(model => model.Lattitude), lng: @Html.DisplayFor(model => model.Longitude) };
                     // The map, centered at Uluru
                     const map = new google.maps.Map(document.getElementById("map"), {
                         zoom: 14,

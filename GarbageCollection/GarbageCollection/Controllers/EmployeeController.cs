@@ -45,7 +45,12 @@ namespace GarbageCollection.Controllers
         // GET: EmployeeController/Details/5
         public ActionResult Details(string id)
         {
+           
             var customer = dbContext.Customers.Where(customer => customer.IdentityUserId == id).SingleOrDefault();
+            //if(customer.Lattitude== null)
+            //{
+                
+            //}
             return View(customer);
         }
 
@@ -132,6 +137,10 @@ namespace GarbageCollection.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var employee = dbContext.Employees.Where(employee => employee.IdentityUserId == userId).SingleOrDefault();
+            if (employee == null)
+            {
+                return new RedirectToActionResult("Create", "Employee", null);
+            }
             zip = employee.Zip;
             DateTime thisDay = DateTime.Today;
             string day = thisDay.ToString("dddd");

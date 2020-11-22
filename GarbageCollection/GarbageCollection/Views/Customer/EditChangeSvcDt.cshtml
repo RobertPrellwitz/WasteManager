@@ -26,14 +26,15 @@
             <input type="hidden" asp-for="StartSuspend" />
             <input type="hidden" asp-for="EndSuspend" />
             <input type="hidden" asp-for="LastPickUp" />
-
+            <input type="hidden" asp-for="Lattitude" />
+            <input type="hidden" asp-for="Longitude" />
 
             <div class="form-group">
                 <label asp-for="PickupDay" class="control-label"></label>
                 <input asp-for="PickupDay" class="form-control" />
                 <span asp-validation-for="PickupDay" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

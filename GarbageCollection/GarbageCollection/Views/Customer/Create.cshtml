@@ -1,17 +1,17 @@
 ﻿@model GarbageCollection.Models.Customer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>create</h1>
 
 <h4>Customer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -44,7 +44,7 @@
                 <span asp-validation-for="Zip" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PickupDay" class="control-label"></label>  
+                <label asp-for="PickupDay" class="control-label"></label>
                 <input asp-for="PickupDay" class="form-control" />
                 <span asp-validation-for="PickupDay" class="text-danger"></span>
             </div>
@@ -62,8 +62,23 @@
                 <label asp-for="EndSuspend" class="control-label"></label>
                 <input asp-for="EndSuspend" class="form-control" />
                 <span asp-validation-for="EndSuspend" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
+            </div>
+            <div class="form-group">
+                <label asp-for="LastPickUp" class="control-label"></label>
+                <input asp-for="LastPickUp" class="form-control" />
+                <span asp-validation-for="LastPickUp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lattitude" class="control-label"></label>
+                <input asp-for="Lattitude" class="form-control" />
+                <span asp-validation-for="Lattitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="IdentityUserId" class="control-label"></label>
                 <select asp-for="IdentityUserId" class ="form-control" asp-items="ViewBag.IdentityUserId"></select>
             </div>*@
