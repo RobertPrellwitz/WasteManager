@@ -56,9 +56,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndSuspend)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.identityUser)
-                </th>*@
+            <th>
+                    Customer Details
+                </th>
             <th></th>
         </tr>
     </thead>
@@ -96,14 +96,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EndSuspend)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.identityUser.Id)
-                    </td>*@
-                @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>*@
+                <td>
+                    <a asp-controller="Employee" asp-action="Details" asp-route-id="@item.IdentityUserId">Customer Details</a>
+                </td>
             </tr>
         }
     </tbody>
