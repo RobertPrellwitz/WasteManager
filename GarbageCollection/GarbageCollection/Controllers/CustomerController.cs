@@ -214,12 +214,12 @@ namespace GarbageCollection.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             currentCustomer.IdentityUserId = userId;
 
-
             string address = currentCustomer.Street + "+" + currentCustomer.City + "+" + currentCustomer.State + "+" + currentCustomer.Zip;
             string baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCrZa-p1sVQEWYQhN2vRdCQwEpadzlcq2k";
 
             var result = new System.Net.WebClient().DownloadString(baseUrl);
             dynamic geo = JsonConvert.DeserializeObject(result);
+            
             string lat = geo.results[0].geometry.location.lat.ToString();
             string lng = geo.results[0].geometry.location.lng.ToString();
             currentCustomer.Lattitude = lat;
